@@ -10,10 +10,27 @@ html(lang="en")
         .loginBox
             form#jsLogin
                 input(placeholder="Set your nickname" type="text")
-        .gameBox
-            h1 you are logged in
+        .gameContainer#jsGame
+            .main
+                canvas.canvas#jsCanvas
+                .controls#controls
+                    button#jsMode Fill
+                    .colors
+                        .color.jsColor(style="background-color:rgb(0, 0, 0)")
+                        .color.jsColor(style="background-color:rgb(255,255,255)")
+                        .color.jsColor(style="background-color:rgb(255,59,48)")
+                        .color.jsColor(style="background-color:rgb(255,149,0)")
+                        .color.jsColor(style="background-color:rgb(255,204,0)")
+                        .color.jsColor(style="background-color:rgb(76,217,100)")
+                        .color.jsColor(style="background-color:rgb(90,200,250)")
+                        .color.jsColor(style="background-color:rgb(0,122,255)")
+                        .color.jsColor(style="background-color:rgb(88,86,214)")
+                .chat
+                    .player__board#playerBoard
+                    ul.text__ul#textUl
+                        form(method="post")#textForm
+                            input(placeholder="write your text" type=text required).text__input
         .notiContainer#jsNoti
-            div
         script. 
             window.minji =!{minji}
         script(src="/socket.io/socket.io.js") 
