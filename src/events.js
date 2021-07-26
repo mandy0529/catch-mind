@@ -12,6 +12,10 @@ const minji = {
   fill: 'fill',
   filled: 'filled',
   playerUpdate: 'playerUpdate',
+  gameStarted: 'gameStarted',
+  leaderNotification: 'leaderNotification',
+  gameEnded: 'gameEnded',
+  startNotification: 'startNotification',
 };
 
 export default minji;

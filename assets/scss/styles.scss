@@ -9,7 +9,10 @@
 button:focus {
   outline: none;
 }
-
+li {
+  margin: 10px;
+  text-align: left;
+}
 html {
   height: 100%;
   text-align: center;
@@ -97,12 +100,12 @@ input {
     }
     .controls {
       margin-top: 25px;
-      display: flex;
-      align-items: center;
       flex-direction: column;
       .colors {
-        margin: 20px;
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 20px;
         &:hover .color {
           opacity: 0.95;
           transform: translateX(-3px);
@@ -135,7 +138,7 @@ input {
         border: 0px;
         padding: 5px 7px;
         min-width: 50px;
-
+        margin: 0 auto;
         border-radius: 5px;
         font-weight: 600;
         border: 2px solid rgb(142, 142, 147);
@@ -195,11 +198,13 @@ input {
 }
 .player__board {
   display: flex;
+  justify-content: center;
   margin: 15px;
 }
 .player__board {
   div {
-    width: 150px;
+    text-align: center;
+    width: 200px;
     height: 30px;
     border-radius: 100px;
     font-size: 18px;
@@ -209,4 +214,12 @@ input {
     margin-right: 10px;
     padding-top: 5px;
   }
+}
+.notis__leader {
+  font-size: 20px;
+  font-weight: bold;
+  width: 600px;
+  height: 50px;
+  border-radius: 10px;
+  margin: 20px auto;
 }

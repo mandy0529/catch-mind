@@ -1,4 +1,4 @@
-import {getSocket, minji} from './socket';
+import {getSocket} from './socket';
 
 const textUl = document.getElementById('textUl');
 const textForm = document.getElementById('textForm');
@@ -26,11 +26,9 @@ export const handleNewMessage = ({message, nickname}) => {
   createMsg(message, nickname);
 };
 
+export const disableChat = () => (textForm.style.display = 'none');
+export const enableChat = () => (textForm.style.display = 'block');
+
 if (textForm) {
   textForm.addEventListener('submit', handleSubmit);
 }
-
-// export function handleMessageNotif(data) {
-//   const {message, nickname} = data;
-//   console.log(`${nickname}: ${message}`);
-// }
