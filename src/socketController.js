@@ -5,6 +5,7 @@ let sockets = [];
 let inProgress = false;
 let word = null;
 let leader = null;
+let timeout = undefined;
 
 const chooseLeader = () => {
   return sockets[Math.floor(Math.random() * sockets.length)];
@@ -20,22 +21,30 @@ const socketController = (socket, io) => {
   };
 
   const startGame = () => {
-    if (inProgress === false) {
-      inProgress = true;
-      leader = chooseLeader();
-      word = chooseWords();
-      setTimeout(() => {
-        superBroadcast(minji.gameStarted);
-      }, 2000);
-      setTimeout(() => {
-        io.to(leader.id).emit(minji.leaderNotification, {word});
-      }, 3000);
-      superBroadcast(minji.startNotification);
+    if (sockets.length > 1) {
+      if (inProgress === false) {
+        inProgress = true;
+        leader = chooseLeader();
+        word = chooseWords();
+        setTimeout(() => {
+          superBroadcast(minji.gameStarted);
+        }, 2000);
+        setTimeout(() => {
+          io.to(leader.id).emit(minji.leaderNotification, {word});
+          timeout = setTimeout(() => finishGame(), 10000);
+        }, 3000);
+        superBroadcast(minji.startNotification);
+      }
     }
   };
   const finishGame = () => {
     inProgress = false;
     superBroadcast(minji.gameEnded);
+    clearTimeout(timeout);
+    if (timeout !== undefined) {
+      clearTimeout(timeout);
+    }
+    setTimeout(() => startGame(), 3000);
   };
 
   const addPoints = (id) => {
@@ -46,6 +55,7 @@ const socketController = (socket, io) => {
       return sockets;
     });
     superBroadcast(minji.playerUpdate, {sockets});
+    finishGame();
   };
 
   socket.on(minji.setNickname, ({nickname}) => {
@@ -58,9 +68,7 @@ const socketController = (socket, io) => {
     });
     broadcast(minji.newUser, {nickname});
     superBroadcast(minji.playerUpdate, {sockets});
-    if (sockets.length === 2) {
-      startGame();
-    }
+    startGame();
   });
 
   socket.on(minji.disconnect, () => {

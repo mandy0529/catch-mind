@@ -1,6 +1,7 @@
 import {getSocket} from './socket';
 
 const textUl = document.getElementById('textUl');
+const list = document.getElementById('textList');
 const textForm = document.getElementById('textForm');
 
 const createMsg = (text, nickname) => {
@@ -8,7 +9,7 @@ const createMsg = (text, nickname) => {
   li.innerHTML = `
     <span class"author">${nickname ? nickname : 'You'}:</span> ${text}
     `;
-  textUl.appendChild(li);
+  list.appendChild(li);
 };
 
 const handleSubmit = (e) => {
@@ -27,7 +28,7 @@ export const handleNewMessage = ({message, nickname}) => {
 };
 
 export const disableChat = () => (textForm.style.display = 'none');
-export const enableChat = () => (textForm.style.display = 'block');
+export const enableChat = () => (textForm.style.display = 'flex');
 
 if (textForm) {
   textForm.addEventListener('submit', handleSubmit);

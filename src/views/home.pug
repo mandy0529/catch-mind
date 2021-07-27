@@ -15,6 +15,7 @@ html(lang="en")
             .main
                 canvas.canvas#jsCanvas
                 .controls#controls
+                    .timeout#timeOut
                     button#jsMode Fill
                     .colors
                         .color.jsColor(style="background-color:rgb(0, 0, 0)")
@@ -29,6 +30,7 @@ html(lang="en")
                 .chat
                     .player__board#playerBoard
                     ul.text__ul#textUl
+                        .list#textList
                         form(method="post")#textForm
                             input(placeholder="write your text" type=text required).text__input
         .notiContainer#jsNoti

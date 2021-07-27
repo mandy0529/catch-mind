@@ -16,6 +16,7 @@ const minji = {
   leaderNotification: 'leaderNotification',
   gameEnded: 'gameEnded',
   startNotification: 'startNotification',
+  timeout: 'timeout',
 };
 
 export default minji;
